@@ -4,7 +4,7 @@ name: Deploy Vite App to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build:
