@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - master   # keep your source code in "master"
+  workflow_dispatch:
 
 jobs:
   build:
