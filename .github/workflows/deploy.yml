@@ -1,14 +1,17 @@
-name: Deploy Vite app to GitHub Pages
+# .github/workflows/deploy.yml
+name: Deploy Vite App to GitHub Pages
 
 on:
   push:
     branches:
-      - master
-  workflow_dispatch:
+      - master   # keep your source code in "master"
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -16,12 +19,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install dependencies (no lockfile)
+        run: npm install --no-package-lock
+
+      - name: Verify secret presence
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: echo "key starts with ${GEMINI_API_KEY:0:5}"
 
       - name: Build project
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: npm run build
 
       - name: Deploy to gh-pages branch
