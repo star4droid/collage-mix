@@ -1,0 +1,5 @@
+{
+  "name": "Gemini Image Collage Mixer",
+  "description": "An AI-powered web application to create stunning image collages. Users can set a grid size, import images, or generate unique visuals with Gemini for each cell. Features include AI prompt enhancement, reference-based image generation, and smart cropping tools. When the grid is complete, users can mix all images into a single high-resolution 16:9 masterpiece.",
+  "requestFramePermissions": []
+}
